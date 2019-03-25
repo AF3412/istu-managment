@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/xhtml" lang="EN">
+
+<head>
+    <div th:insert="fragments/head :: head"></div>
+    <!-- Page level plugin CSS-->
+    <link rel="stylesheet" th:href="@{lib/gantt/css/style.css}">
+</head>
+
+<body id="page-top">
+
+<div th:insert="fragments/nav :: nav"></div>
+
+<div id="wrapper">
+
+    <!-- Sidebar -->
+    <div th:insert="fragments/sidebar :: sidebar"></div>
+
+    <div id="content-wrapper">
+
+        <div class="container-fluid">
+
+            <!-- Breadcrumbs-->
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item">Данные проекта</li>
+            </ol>
+
+            <!-- Page Content -->
+            <h1>Наименование проекта</h1>
+            <hr>
+
+            <h2>
+                График проекта
+            </h2>
+
+            <div id="gantt"></div>
+
+        </div>
+        <!-- /.container-fluid -->
+
+        <!-- Sticky Footer -->
+        <footer class="sticky-footer">
+            <div class="container my-auto">
+                <div class="copyright text-center my-auto">
+                    <span>Все права защищены © ИжГТУ 2019</span>
+                </div>
+            </div>
+        </footer>
+
+    </div>
+    <!-- /.content-wrapper -->
+
+</div>
+<!-- /#wrapper -->
+
+<!-- Scroll to Top Button-->
+<a class="scroll-to-top rounded" href="#page-top">
+    <i class="fas fa-angle-up"></i>
+</a>
+
+<!-- Bootstrap core JavaScript-->
+<script th:src="@{lib/jquery/jquery.min.js}"></script>
+<script th:src="@{lib/bootstrap/js/bootstrap.bundle.min.js}"></script>
+
+<!-- Core plugin JavaScript-->
+<script th:src="@{lib/jquery-easing/jquery.easing.min.js}"></script>
+
+<!-- Custom scripts for all pages-->
+<script th:src="@{lib/sb-admin/sb-admin.min.js}"></script>
+
+<!--Plugins-->
+<script th:src="@{lib/gantt/js/jquery.fn.gantt.js}"></script>
+
+<!--Page template-->
+<script type="text/javascript" th:src="@{js/index.js}"></script>
+
+
+</body>
+
+</html>
