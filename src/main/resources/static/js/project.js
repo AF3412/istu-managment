@@ -24,7 +24,7 @@ $(function () {
     $('.btn-outline-secondary').click(function () {
         var taskRow = $(this).parent().parent();
         edit(taskRow);
-    })
+    });
 
     $('#save').click(function () {
         $('#modalProject').modal('hide');
@@ -37,13 +37,14 @@ $(function () {
             dateStart: dateStart,
             dateEnd: dateEnd,
             dateHumanStart: dateHumanStart,
-            dateHumanEnd: dateHumanEnd
-        }
+            dateHumanEnd: dateHumanEnd,
+            daysCount: daysCount
+        };
         save(task);
     });
 
 
-})
+});
 
 function save(task) {
 
@@ -57,7 +58,8 @@ function save(task) {
         },
         complete: function (data) {
             clearModal();
-            location.reload();
+            $('#modalTask').modal('hide');
+            // location.reload();
         }
     });
 }
@@ -69,8 +71,8 @@ function edit(taskRow) {
     dateEnd = $(taskRow).find('td[name=dateEnd]').data('end');
     $('#name').val($(taskRow).find('td[name=name]').text());
     $('#employee').val($(taskRow).find('td[name=employeeName]').data('eid'));
-    console.log($(taskRow).find('td[name=dateStart]').data('start'));
-    console.log($(taskRow).find('td[name=dateEnd]').data('end'));
+    //console.log($(taskRow).find('td[name=dateStart]').data('start'));
+    //console.log($(taskRow).find('td[name=dateEnd]').data('end'));
     $("#daterange").data('daterangepicker').setStartDate(dateHumanStart);
     $("#daterange").data('daterangepicker').setEndDate(dateHumanEnd);
     $("#daterange").data('daterangepicker').updateView();

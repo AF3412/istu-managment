@@ -16,7 +16,7 @@ import java.io.IOException;
 @Controller
 public class Project {
 
-    private final static ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
     private final DataRepository dataRepository;
 
@@ -26,25 +26,28 @@ public class Project {
     }
 
     @GetMapping("/project")
-    public String initPage(Model model) {
-        try {
-            model.addAttribute("taskList", dataRepository.getArrayTask());
-        } catch (IOException e) {
-            System.out.println("Empty task file");
-        }
-
+    public final String initPage(Model model) {
         try {
             model.addAttribute("listEmployee", dataRepository.getArrayEmployee());
         } catch (IOException e) {
             System.out.println("Empty employee file");
+            return "redirect:/settings";
         }
+
+        try {
+            model.addAttribute("taskList", dataRepository.getArrayTask());
+        } catch (IOException e) {
+            System.out.println("Empty task file");
+            return "redirect:/project";
+        }
+
 
         return "project";
     }
 
     @PostMapping(value = "/saveTask")
     @ResponseBody
-    public String saveBooking(@RequestBody Task task) throws IOException {
+    public final String saveBooking(@RequestBody Task task) throws IOException {
         return OBJECT_MAPPER.writeValueAsString(dataRepository.saveTask(task));
     }
 

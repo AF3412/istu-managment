@@ -16,7 +16,7 @@ import java.io.IOException;
 @Controller
 public class Settings {
 
-    private final static ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
 
     private final DataRepository dataRepository;
 
@@ -26,7 +26,7 @@ public class Settings {
     }
 
     @GetMapping("/settings")
-    public String initPage(Model model) {
+    public final String initPage(Model model) {
         try {
             model.addAttribute("listEmployee", dataRepository.getArrayEmployee());
         } catch (IOException e) {
@@ -37,7 +37,7 @@ public class Settings {
 
     @PostMapping(value = "/saveEmployee")
     @ResponseBody
-    public String saveBooking(@RequestBody Employee employee) throws IOException {
+    public final String saveBooking(@RequestBody Employee employee) throws IOException {
         return OBJECT_MAPPER.writeValueAsString(dataRepository.saveEmployee(employee));
     }
 

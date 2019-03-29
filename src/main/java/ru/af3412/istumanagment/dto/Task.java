@@ -14,5 +14,6 @@ public class Task {
     private Long dateEnd;
     private String dateHumanStart;
     private String dateHumanEnd;
+    private int daysCount;
 
 }

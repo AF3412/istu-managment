@@ -12,7 +12,7 @@ $(function () {
         edit(employeeRow);
     })
 
-})
+});
 
 function save() {
     var employee = {

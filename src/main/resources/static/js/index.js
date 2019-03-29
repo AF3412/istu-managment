@@ -1,23 +1,18 @@
 $(function () {
     getDataValues();
-})
+});
 
 function drawGraph(dataValues) {
 
-    // shifts dates closer to Date.now()
-    var offset = new Date().setHours(0, 0, 0, 0) -
-        new Date(dataValues[0].values[0].from).setDate(35);
     for (var i = 0, len = dataValues.length, value; i < len; i++) {
         value = dataValues[i].values[0];
-        value.from += offset;
-        value.to += offset;
     }
 
     $("#gantt").gantt({
         source: dataValues,
         navigate: "scroll",
-        scale: "weeks",
-        minScale: "hours",
+        scale: "days",
+        minScale: "days",
         maxScale: "months",
         itemsPerPage: 10,
         scrollToToday: false,
@@ -61,6 +56,21 @@ function getDataValues() {
         success: function (data) {
             console.log(JSON.parse(data));
             drawGraph(JSON.parse(data));
+        }
+    });
+
+    $.ajax({
+        url: '/getCost',
+        type: 'post',
+        contentType: "application/json",
+        success: function (data) {
+            var cost = JSON.parse(data);
+            console.log(cost);
+            for (var i = 0; i < cost.length; i++) {
+                console.log(cost[i].name + ' ' + cost[i].cost);
+                $('#cost').append('<p class="m-1">' + cost[i].name + ': ' + cost[i].cost + '</p>');
+            }
+
         }
     });
 

@@ -15,12 +15,12 @@ import java.util.List;
 @Repository
 public class DataRepository {
 
-    private final static ObjectMapper OBJECT_MAPPER = new ObjectMapper();
-    private final static File DATA_BASE_EMPLOYEE = new File("target/employee.json");
-    private final static File DATA_BASE_TASK = new File("target/task.json");
+    private static final ObjectMapper OBJECT_MAPPER = new ObjectMapper();
+    private static final File DATA_BASE_EMPLOYEE = new File("target/employee.json");
+    private static final File DATA_BASE_TASK = new File("target/task.json");
 
-    public Employee[] getArrayEmployee() throws IOException {
-        File tmp = getDataBase(DATA_BASE_EMPLOYEE);
+    public final Employee[] getArrayEmployee() throws IOException {
+        final File tmp = getDataBase(DATA_BASE_EMPLOYEE);
         if (tmp.length() == 0) {
             return new Employee[0];
         } else {
@@ -28,7 +28,7 @@ public class DataRepository {
         }
     }
 
-    public Task[] getArrayTask() throws IOException {
+    public final Task[] getArrayTask() throws IOException {
         File tmp = getDataBase(DATA_BASE_TASK);
         if (tmp.length() == 0) {
             return new Task[0];
@@ -37,7 +37,7 @@ public class DataRepository {
         }
     }
 
-    public Employee[] saveEmployee(Employee employee) throws IOException {
+    public final Employee[] saveEmployee(Employee employee) throws IOException {
         List<Employee> listEmployee = new ArrayList<>(Arrays.asList(getArrayEmployee()));
         if (employee.getId() == null) {
             employee.setId(listEmployee.size() + 1);
@@ -55,7 +55,7 @@ public class DataRepository {
         return getArrayEmployee();
     }
 
-    public Task[] saveTask(Task task) throws IOException {
+    public final Task[] saveTask(Task task) throws IOException {
         List<Task> listTask = new ArrayList<>(Arrays.asList(getArrayTask()));
         if (task.getId() == null) {
             task.setId(listTask.size() + 1);
